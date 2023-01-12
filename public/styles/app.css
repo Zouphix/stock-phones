@@ -1,0 +1,62 @@
+body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    background-color: rgb(250, 243, 234);
+    padding: 2%;
+
+
+}
+
+#divTable{
+    background-color: white;
+    border-radius: 20px;
+    padding: 2%;
+
+}
+
+th {
+    color: rgb(59, 18, 170);
+  }
+
+.alerte{
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+}
+
+.alerteVerte{
+    background-color: green;
+}
+
+.alerteRouge{
+    background-color: red;
+}
+
+.alerteJaune{
+    background-color: yellow;
+}
+
+.containerAlerte{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.containerAlerte>div{
+    margin-right: 3%;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.texteVert{
+    color: green;
+}
+
+.texteRouge{
+    color: red;
+}
+
+.texteJaune{
+    color: yellow;
+}
+   

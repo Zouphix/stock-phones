@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap5.min.css">
+<link rel="stylesheet" href={{asset('styles/app.css')}}>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+
+	$(document).ready(function () {
+var table = $('#tablePhones').DataTable({
+"dom": "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+fixedColumns: true,
+//lengthChange: false,
+buttons: ['copy', 'excel', 'pdf', 'colvis']
+
+
+});
+table.buttons().container()
+        .appendTo( '#tablePhones_wrapper .col-md-6:eq(0)' );
+});
+</script>
+
+
+{% if employes is empty %}
+	<h2>Pas encore d'employe !</h2>
+{% else %}
+	{# <h2>Il y a
+			{{ employes|length }}
+			employés</h2>
+		<h3>Voici la liste</h3> #}
+	<div id="divTable">
+		<table id="tablePhones" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Civilité</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in employes %}
+					<tr>
+						<td>{{item.Civilite}}</td>
+						<td>{{item.Nom}}</td>
+						<td>{{item.Prenom}}</td>
+						<td>{{item.Email}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="containerAlerte">
+			<div>Terminaux disponibles :
+				{{terminauxRestants}}
+				/
+				{{totalTerminaux}}</div>
+			{% if terminauxRestants >= totalTerminaux / 4 %}
+				<div class="alerte alerteVerte"></div>
+				<div class="texteVert">Il reste suffisemment de terminaux disponibles.</div>
+			{% elseif terminauxRestants < totalTerminaux / 4 and terminauxRestants > totalTerminaux / 10 %}
+				<div class="alerte alerteJaune"></div>
+				<div class="texteJaune">Il ne reste plus beaucoup de terminaux disponibles.</div>
+			{% else %}
+				<div class="alerte alerteRouge"></div>
+				<div class="texteRouge">Un renouvellement du stock est nécessaire.</div>
+			{% endif %}
+
+
+		</div>
+	</div>
+
+{% endif %}

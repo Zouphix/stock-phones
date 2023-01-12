@@ -27,9 +27,13 @@ class Forfait
     #[ORM\OneToMany(mappedBy: 'forfaitId', targetEntity: Ligne::class)]
     private Collection $lignes;
 
+    #[ORM\OneToMany(mappedBy: 'forfaitId', targetEntity: Test::class)]
+    private Collection $tests;
+
     public function __construct()
     {
         $this->lignes = new ArrayCollection();
+        $this->tests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,4 +106,6 @@ class Forfait
 
         return $this;
     }
+
+ 
 }
