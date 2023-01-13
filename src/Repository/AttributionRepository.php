@@ -39,28 +39,21 @@ class AttributionRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Attribution[] Returns an array of Attribution objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Attribution
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+public function getAttributionInfo(){
+    $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT e.Nom, e.civilite, e.Prenom, e.Email, t.communiquant, t.imeiCommuniquant, t.imeiAchete, l.miseService
+            FROM App\Entity\Employe e
+            INNER JOIN App\Entity\Attribution a WITH a.employeId = e.id
+            INNER JOIN App\Entity\Ligne l WITH a.ligneId = l.id
+            INNER JOIN App\Entity\Terminal t WITH a.terminalId = t.id
+            INNER JOIN App\Entity\Forfait f WITH l.forfaitId = f.id
+            INNER JOIN App\Entity\Liste li with l.listeId = li.id'
+            
+        );
+
+        return $query->getResult();
+}
 }

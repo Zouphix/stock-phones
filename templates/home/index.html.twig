@@ -1,12 +1,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap5.min.css">
 <link rel="stylesheet" href={{asset('styles/app.css')}}>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap5.min.js"></script>
 
 <script>
 
@@ -36,19 +47,30 @@ table.buttons().container()
 		<table id="tablePhones" class="table table-striped">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Civilité</th>
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Email</th>
+					<th>Terminal Communiquant</th>
+					<th>IMEI Communiquant</th>
+					<th>IMEI Acheté</th>
+					<th>Mise en service</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for item in employes %}
+				{% for item in attributions %}
 					<tr>
-						<td>{{item.Civilite}}</td>
+						<td><input type="checkbox" class="form-check-input" name="" id=""></td>
+						<td>{{item.civilite}}</td>
 						<td>{{item.Nom}}</td>
 						<td>{{item.Prenom}}</td>
 						<td>{{item.Email}}</td>
+						<td>{{item.communiquant}}</td>
+						<td>{{item.imeiCommuniquant}}</td>
+						<td>{{item.imeiAchete}}</td>
+						<td>{{item.miseService}}</td>
+
 					</tr>
 				{% endfor %}
 			</tbody>
@@ -60,7 +82,7 @@ table.buttons().container()
 				{{totalTerminaux}}</div>
 			{% if terminauxRestants >= totalTerminaux / 4 %}
 				<div class="alerte alerteVerte"></div>
-				<div class="texteVert">Il reste suffisemment de terminaux disponibles.</div>
+				<div class="texteVert">Il reste suffisamment de terminaux disponibles.</div>
 			{% elseif terminauxRestants < totalTerminaux / 4 and terminauxRestants > totalTerminaux / 10 %}
 				<div class="alerte alerteJaune"></div>
 				<div class="texteJaune">Il ne reste plus beaucoup de terminaux disponibles.</div>

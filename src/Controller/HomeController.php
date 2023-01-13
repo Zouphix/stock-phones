@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Attribution;
 use App\Entity\Employe;
 use App\Entity\Stock;
+use App\Repository\AttributionRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +18,10 @@ class HomeController extends AbstractController
     {
         $employes = $doctrine->getRepository(Employe::class)->findAll();
 
+        $attribution = new AttributionRepository($doctrine);
+
+        $attributions = $attribution->getAttributionInfo();
+
 
         $totalTerminaux = $doctrine->getRepository(Stock::class)->findOneBy(['libelle' => 'Terminaux'])->getTotal();
 
@@ -23,8 +29,11 @@ class HomeController extends AbstractController
 
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController', 'employes' => $employes, 'totalTerminaux' => $totalTerminaux, 
-            'terminauxRestants' => $terminauxRestants
+            'controller_name' => 'HomeController', 
+            'employes' => $employes,
+            'totalTerminaux' => $totalTerminaux, 
+            'terminauxRestants' => $terminauxRestants,
+            'attributions' => $attributions
         ], );
 
 

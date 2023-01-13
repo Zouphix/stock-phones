@@ -14,8 +14,20 @@ body {
 }
 
 th {
-    color: rgb(59, 18, 170);
+    color: rgb(255, 132, 0);
   }
+
+button {
+    background-color: rgb(255, 132, 0);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding: 1%;
+    margin: 0.5%;
+    font-size: 1.02em;
+    font-weight: 600;
+    cursor: pointer;
+}
 
 .alerte{
     height: 35px;
