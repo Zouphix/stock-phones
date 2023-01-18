@@ -44,7 +44,9 @@ public function getAttributionInfo(){
     $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT e.Nom, e.civilite, e.Prenom, e.Email, t.communiquant, t.imeiCommuniquant, t.imeiAchete, l.miseService
+            'SELECT e.Nom, e.civilite, e.Prenom, e.Email, t.achete, t.communiquant, t.imeiCommuniquant, t.imeiAchete, l.miseService, l.reference, l.finEngagement,
+            l.facturation, l.portage, l.csim, l.numeroPrive, l.changementTerminal, l.modificationForfait, l.ligneSecondaire, l.lignePrincipale, l.masterIdAcces,
+            f.libelle, li.libelle
             FROM App\Entity\Employe e
             INNER JOIN App\Entity\Attribution a WITH a.employeId = e.id
             INNER JOIN App\Entity\Ligne l WITH a.ligneId = l.id
