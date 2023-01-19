@@ -25,18 +25,16 @@
 {% set counter = 0 %}
 
 <script>
-//function format(gc_id, date, type, amount, note) {
-//    return "<div class='col-xs-offset-1'><b>GC ID:</b> "+gc_id+"</div><div class='col-xs-offset-1'><b>Date:</b>
-//	 "+date+"</div><div class='col-xs-offset-1'><b>Type:</b> tttttttt</div><div class='col-xs-offset-1'><b>Amount:</b>zzzzzzzzzzzzzz</div>
-//	 <div class='col-xs-offset-1'><b>Note:</b>nnnnnnnnnnnnnnn</div>";
-//};
+function format(gc_id, date, type, amount, note) {
+    return "<div class='col-xs-offset-1'><b>GC ID:</b> "+gc_id+"</div><div class='col-xs-offset-1'><b>Date:</b>55555555555</div><div class='col-xs-offset-1'><b>Type:</b> tttttttt</div><div class='col-xs-offset-1'><b>Amount:</b>zzzzzzzzzzzzzz</div<div class='col-xs-offset-1'><b>Note:</b>nnnnnnnnnnnnnnn</div>";
+};
 
 	$(document).ready(function () {
 var table = $('#tablePhones').DataTable({
 //"dom": "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
 fixedColumns: true,
 //lengthChange: false,
-buttons: ['copy', 'excel', 'pdf', 'colvis']
+buttons: ['copy', 'excel', 'pdf', 'colvis', 'add']
 
 
 });
@@ -55,6 +53,7 @@ table.buttons().container()
 			employés</h2>
 		<h3>Voici la liste</h3> #}
 	<div id="divTable">
+	
 		<table id="tablePhones" class="table table-striped display" cellspacing="0">
 			<thead>
 				<tr>
@@ -69,22 +68,23 @@ table.buttons().container()
 					<th>IMEI Acheté</th>
 					<th>Mise en service</th>
 					<th>Reference</th>
-					<th>Fin engagement</th>
-					<th>Facturation</th>
-					{# <th>Portage</th> #}
-					<th>CSIM</th>
-					{# <th>NumeroPrive</th> #}
-					{# <th>ChangementTerminal</th>
-					<th>Modification forfait</th>
-					<th>Ligne secondaire</th>
-					<th>Ligne principale</th>
-					<th>MIA</th>
-					<th>Forfait</th>
-					<th>Liste</th>					 #}
+					
+					<th class="hidden">Fin engagement</th>
+					<th class="hidden">Facturation</th>
+					<th class="hidden">Portage</th> 
+					<th class="hidden">CSIM</th>
+					<th class="hidden">NumeroPrive</th> 
+					<th class="hidden">ChangementTerminal</th>
+					<th class="hidden">Modification forfait</th>
+					<th class="hidden">Ligne secondaire</th>
+					<th class="hidden">Ligne principale</th>
+					<th class="hidden">MIA</th>
+					<th class="hidden">Forfait</th>
+					<th class="hidden">Liste</th>				
 				</tr>
 			</thead>
 			<tbody>
-				//make a counter
+				
 				{% set counter = -1 %}
 				{% for item in attributions %}
 					<tr>
@@ -99,24 +99,25 @@ table.buttons().container()
 						<td>{{item.imeiAchete}}</td>
 						<td>{{item.miseService}}</td>
 						<td>{{item.reference}}</td>
-						<td>{{item.finEngagement}}</td>
-						<td>{{item.facturation}}</td>
-						{# <td>{{item.portage}}</td> #}
-						<td>{{item.csim}}</td>
-						{# <td>{{item.numeroPrive}}</td> #}
-						{# <td>{{item.changementTerminal}}</td> #}
-						{# <td>{{item.modificationForfait}}</td>
-						<td>{{item.ligneSecondaire}}</td>
-						<td>{{item.lignePrincipale}}</td>
-						<td>{{item.masterIdAcces}}</td>
-						<td>{{item.libelle}}</td> #}
+						<td class="hidden">{{item.finEngagement}}</td>
+						<td class="hidden">{{item.facturation}}</td>
+						<td class="hidden">{{item.portage}}</td> 
+						<td class="hidden">{{item.csim}}</td>
+						<td class="hidden">{{item.numeroPrive}}</td>
+						<td class="hidden">{{item.changementTerminal}}</td> 
+						<td class="hidden">{{item.modificationForfait}}</td>
+						<td class="hidden">{{item.ligneSecondaire}}</td>
+						<td class="hidden">{{item.lignePrincipale}}</td>
+						<td class="hidden">{{item.masterIdAcces}}</td>
+						<td class="hidden">{{item.libelle}}</td>
+						<td class="hidden"></td>
 						
 					
 					</tr>
 					{% set counter = counter + 1 %}
 				{% endfor %}
 				
-				{# {% block javascripts %}
+				{% block javascripts %}
 							<script>
 								
 									$('#tablePhones tbody').on('click', 'td.details-control', function () {
@@ -138,7 +139,7 @@ table.buttons().container()
 							
 							</script>
 						
-				{% endblock %} #}
+				{% endblock %}
 			</tbody>
 		</table>
 		<div class="containerAlerte">
@@ -178,7 +179,7 @@ table.buttons().container()
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="formLigne">
         {{form_start(form)}}
 		{{form_widget(form)}}
 		{{form_end(form)}}
@@ -186,6 +187,14 @@ table.buttons().container()
     </div>
   </div>
 </div>
+
+{# {% block javascripts %}
+	<script>
+		$('#tablePhones_wrapper').ready({
+			$('#tablePhones_wrapper').append('<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Nouvelle ligne</button>');
+		});
+	</script>
+{% endblock %} #}
 
 {# FORM EMPLOYE #}
 <!-- Button trigger modal -->

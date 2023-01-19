@@ -33,9 +33,12 @@ class HomeController extends AbstractController
 
         $entityManager = $doctrine->getManager();
 
+        $totalAttribution = $doctrine->getRepository(Attribution::class)->findAll();
+        $countAttribution = count($totalAttribution);
+
         $totalTerminaux = $doctrine->getRepository(Stock::class)->findOneBy(['libelle' => 'Terminaux'])->getTotal();
 
-        $terminauxRestants = $totalTerminaux - count($employes);
+        $terminauxRestants = $totalTerminaux - $countAttribution;
 
         $ligne = new Ligne();
 
@@ -96,6 +99,7 @@ class HomeController extends AbstractController
             'formEmploye' => $formEmploye->createView(),
             'formTerminal' => $formTerminal->createView(),
             'formAttribution' => $formAttribution->createView(),
+            'countAttribution' => $countAttribution,
 
         ], );
 

@@ -1,5 +1,7 @@
 body {
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    /* overflow-x: hidden; */
+    overflow-x: scroll;
+    width: 100%;
     background-color: rgb(250, 243, 234);
     padding: 2%;
 
@@ -10,6 +12,7 @@ body {
     background-color: white;
     border-radius: 20px;
     padding: 2%;
+    overflow-x: scroll;
 
 }
 
@@ -71,4 +74,11 @@ button {
 .texteJaune{
     color: yellow;
 }
-   
+
+#formLigne{
+    background-color: red;
+}
+
+.hidden{
+    display: none;
+}

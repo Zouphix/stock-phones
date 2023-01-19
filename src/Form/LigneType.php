@@ -7,6 +7,7 @@ use App\Entity\Ligne;
 use App\Entity\Liste;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,68 +22,99 @@ class LigneType extends AbstractType
             ->add('reference', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'Numero',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
                 ],
             ])
             ->add('miseService', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Date de mise en service',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('finEngagement', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Date de fin d\'engagement',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('facturation', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Date de facturation',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('portage', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'Portage',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('csim', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'CSIM',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('numeroPrive', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'Numero prive',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('changementTerminal', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Changement terminal',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('modificationForfait', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Modification forfait',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
-            ->add('ligneSecondaire')
+            ->add('ligneSecondaire', CheckboxType::class, [
+                'label' => 'Ligne secondaire : ',
+                'attr' => [
+                    
+                    'class' => 'form-check-input',
+                    'style' => 'margin-bottom: 20px;
+                                margin-left: 20px;'
+
+                ],
+            ])
+
             ->add('lignePrincipale', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'Ligne principale',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('masterIdAcces', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'Master ID acces',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
 
@@ -92,7 +124,9 @@ class LigneType extends AbstractType
                 
                 'attr' => [
                     'placeholder' => 'Advertisement',
-                    'class' => 'form-select'
+                    'class' => 'form-select',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
                 // 'block_prefix' => '{{item.Title}}',
             ])
@@ -103,7 +137,9 @@ class LigneType extends AbstractType
                 
                 'attr' => [
                     'placeholder' => 'User',
-                    'class' => 'form-select'
+                    'class' => 'form-select',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
                 // 'block_prefix' => '{{item.Title}}',
                 
@@ -112,7 +148,7 @@ class LigneType extends AbstractType
             ->add('save', SubmitType::class, [
                 'label' => 'Create',
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-primary',
                 ],
             ]);
             
