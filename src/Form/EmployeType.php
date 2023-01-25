@@ -30,7 +30,8 @@ class EmployeType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Nom',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;autocomplete:off',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -38,7 +39,8 @@ class EmployeType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Prenom',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
 
                 ],
@@ -47,7 +49,8 @@ class EmployeType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Email',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -56,7 +59,7 @@ class EmployeType extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-primary',
                     'style' => 'background-color: #1b1e21; border-color: #1b1e21; margin-top: 20px; margin-bottom: 20px; width: 100%;'
-                    
+
 
                     
 

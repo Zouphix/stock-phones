@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Modele;
 use App\Entity\Terminal;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -14,28 +16,38 @@ class TerminalType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        
         $builder
-            ->add('achete', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Terminal acheté',
-                    'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+            ->add('achete', EntityType::class, [
+                'class' => Modele::class,
+                'choice_label' => 'libelle',
+                'label' => 'Modèle du terminal acheté',
 
+                'attr' => [
+                    
+                    'class' => 'form-select',
+                    'style' => 'margin-bottom: 20px;'
                 ],
+                // 'block_prefix' => '{{item.Title}}',
             ])
-            ->add('communiquant', TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Terminal communiquant',
-                    'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+            ->add('communiquant', EntityType::class, [
+                'class' => Modele::class,
+                'choice_label' => 'libelle',
+                'label' => 'Modèle du terminal communiquant',
 
+                'attr' => [
+                    
+                    'class' => 'form-select',
+                    'style' => 'margin-bottom: 20px;'
                 ],
+                // 'block_prefix' => '{{item.Title}}',
             ])
             ->add('imeiAchete', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'IMEI du terminal acheté',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -43,7 +55,8 @@ class TerminalType extends AbstractType
                 'attr' => [
                     'placeholder' => 'IMEI du terminal communiquant',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])

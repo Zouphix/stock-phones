@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Attribution;
 use App\Entity\Employe;
 use App\Entity\Ligne;
+use App\Entity\Modele;
 use App\Entity\Stock;
 use App\Entity\Terminal;
 use App\Form\AttributionType;
@@ -26,6 +27,10 @@ class HomeController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine, FormFactoryInterface $formfactory ): Response
     {
         $employes = $doctrine->getRepository(Employe::class)->findAll();
+
+        $modeles = $doctrine->getRepository(Modele::class)->findAll();
+
+ 
 
         $attribution = new AttributionRepository($doctrine);
 
@@ -72,9 +77,32 @@ class HomeController extends AbstractController
 
         $terminal = new Terminal();
         $formTerminal = $this->createForm(TerminalType::class, $terminal);
+        
+
+
+        try {
+            $idModeleA = $request->request->get('terminal')['achete'];
+            $idModeleC = $request->request->get('terminal')['communiquant'];
+            $imeiAchete = $request->request->get('terminal')['imeiAchete'];
+            $imeiCommuniquant = $request->request->get('terminal')['imeiCommuniquant'];
+
+            $modeleA = $doctrine->getRepository(Modele::class)->find($idModeleA);
+            $modeleC = $doctrine->getRepository(Modele::class)->find($idModeleC);
+            $request->request->set('terminal', ['achete' => $modeleA->getLibelle(), 'communiquant' => $modeleC->getLibelle(), 'imeiAchete' => $imeiAchete, 'imeiCommuniquant' => $imeiCommuniquant]);
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
         $formTerminal->handleRequest($request);
-        if ($formTerminal->isSubmitted() && $formTerminal->isValid()) {
-            $entityManager->persist($terminal);
+
+        if ($formTerminal->isSubmitted()) {
+            $vraiTerminal = new Terminal();
+            $vraiTerminal->setAchete($request->request->get('terminal')['achete']);
+            $vraiTerminal->setCommuniquant($request->request->get('terminal')['communiquant']);
+            $vraiTerminal->setImeiAchete($request->request->get('terminal')['imeiAchete']);
+            $vraiTerminal->setImeiCommuniquant($request->request->get('terminal')['imeiCommuniquant']);
+            $entityManager->persist($vraiTerminal);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_home');

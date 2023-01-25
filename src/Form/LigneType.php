@@ -30,7 +30,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Date de mise en service',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -38,7 +39,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Date de fin d\'engagement',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -46,7 +48,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Date de facturation',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -54,7 +57,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Portage',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -62,7 +66,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'CSIM',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -70,7 +75,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Numero prive',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -78,7 +84,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Changement terminal',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -86,7 +93,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Modification forfait',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -106,7 +114,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Ligne principale',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
@@ -114,7 +123,8 @@ class LigneType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Master ID acces',
                     'class' => 'form-control',
-                    'style' => 'margin-bottom: 20px;'
+                    'style' => 'margin-bottom: 20px;',
+                    'autocomplete' => 'off',
 
                 ],
             ])
