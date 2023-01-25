@@ -18,10 +18,24 @@ class EmployeController extends AbstractController
 
         $employes = $doctrine->getRepository(Employe::class)->findAll();
 
+        $employe = new Employe();
+        $form = $this->createForm(EmployeType::class, $employe);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $form->getData();
+            $em = $doctrine->getManager();
+            $em->persist($result);
+            $em->flush();
+
+            return $this->redirectToRoute('employe_home');
+        }
+
 
         return $this->render('employe/index.html.twig', [
             'controller_name' => 'EmployeController',
             'employes' => $employes,
+            'form' => $form->createView(),
         ]);
     }
 

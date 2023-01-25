@@ -13,15 +13,29 @@ use Symfony\Component\Routing\Annotation\Route;
 class LigneController extends AbstractController
 {
     #[Route('/lignes', name: 'ligne_home')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(Request $request, ManagerRegistry $doctrine): Response
     {
 
         $lignes = $doctrine->getRepository(Ligne::class)->findAll();
+        
+        $ligne = new Ligne();
+        $form = $this->createForm(LigneType::class, $ligne);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $form->getData();
+            $em = $doctrine->getManager();
+            $em->persist($result);
+            $em->flush();
+
+            return $this->redirectToRoute('ligne_home');
+        }
 
 
         return $this->render('ligne/index.html.twig', [
             'controller_name' => 'LigneController',
             'lignes' => $lignes,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -62,4 +76,6 @@ class LigneController extends AbstractController
 
         return $this->redirectToRoute('ligne_home');
     }
+
+
 }
