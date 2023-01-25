@@ -21,3 +21,7 @@
 // addEvent();
 
 
+var add = document.querySelector('.col-md-6');
+add.classList.add('add');
+
+

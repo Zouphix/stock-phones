@@ -16,7 +16,7 @@ class Ligne
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $reference = null;
+    private ?string $reference = null;
 
     #[ORM\Column(length: 255)]
     private ?string $miseService = null;
@@ -73,12 +73,12 @@ class Ligne
         return $this->id;
     }
 
-    public function getReference(): ?int
+    public function getReference(): ?string
     {
         return $this->reference;
     }
 
-    public function setReference(int $reference): self
+    public function setReference(string $reference): self
     {
         $this->reference = $reference;
 

@@ -96,7 +96,8 @@ class LigneType extends AbstractType
                     
                     'class' => 'form-check-input',
                     'style' => 'margin-bottom: 20px;
-                                margin-left: 20px;'
+                                margin-left: 20px;
+                                '
 
                 ],
             ])
@@ -149,6 +150,7 @@ class LigneType extends AbstractType
                 'label' => 'Create',
                 'attr' => [
                     'class' => 'btn btn-primary',
+                    'style' => 'background-color: #1b1e21; border-color: #1b1e21; margin-top: 20px; margin-bottom: 20px; width: 100%;'
                 ],
             ]);
             

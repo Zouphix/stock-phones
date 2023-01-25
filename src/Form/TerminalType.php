@@ -18,31 +18,40 @@ class TerminalType extends AbstractType
             ->add('achete', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Terminal acheté',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('communiquant', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Terminal communiquant',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('imeiAchete', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'IMEI du terminal acheté',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('imeiCommuniquant', IntegerType::class, [
                 'attr' => [
                     'placeholder' => 'IMEI du terminal communiquant',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-primary',
+                    'style' => 'background-color: #1b1e21; border-color: #1b1e21; margin-top: 20px; margin-bottom: 20px; width: 100%;'
                 ],
             ])
         ;

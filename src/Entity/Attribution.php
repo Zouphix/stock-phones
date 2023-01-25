@@ -25,6 +25,9 @@ class Attribution
     #[ORM\JoinColumn(nullable: false)]
     private ?Terminal $terminalId = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isDeleted = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +65,18 @@ class Attribution
     public function setTerminalId(?Terminal $terminalId): self
     {
         $this->terminalId = $terminalId;
+
+        return $this;
+    }
+
+    public function isIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(?bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }

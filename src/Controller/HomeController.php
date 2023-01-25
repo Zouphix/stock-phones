@@ -34,9 +34,13 @@ class HomeController extends AbstractController
         $entityManager = $doctrine->getManager();
 
         $totalAttribution = $doctrine->getRepository(Attribution::class)->findAll();
+        
         $countAttribution = count($totalAttribution);
 
         $totalTerminaux = $doctrine->getRepository(Stock::class)->findOneBy(['libelle' => 'Terminaux'])->getTotal();
+
+        $lignes = $doctrine->getRepository(Ligne::class)->findAll();
+     
 
         $terminauxRestants = $totalTerminaux - $countAttribution;
 
@@ -89,6 +93,8 @@ class HomeController extends AbstractController
 
 
 
+
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController', 
             'employes' => $employes,
@@ -105,4 +111,41 @@ class HomeController extends AbstractController
 
 
     }
+
+    #[Route('/edit/{id}', name: 'app_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, ManagerRegistry $doctrine, $id): Response
+    {
+        
+        $attribution = $doctrine->getRepository(Attribution::class)->find($id);
+        $form = $this->createForm(AttributionType::class, $attribution);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $form->getData();
+            $em = $doctrine->getManager();
+            $em->persist($result);
+            $em->flush();
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('home/edit.html.twig', [
+            'attribution' => $attribution,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/delete/{id}', name: 'app_delete', methods: ['GET', 'POST'])]
+    public function delete(Request $request, ManagerRegistry $doctrine, $id): Response
+    {
+        $attribution = $doctrine->getRepository(Attribution::class)->find($id);
+        $attribution->setIsDeleted(true);
+        $em = $doctrine->getManager();
+        $em->persist($attribution);
+        $em->flush();
+
+        return $this->redirectToRoute('app_home');
+    }
+
+    
 }

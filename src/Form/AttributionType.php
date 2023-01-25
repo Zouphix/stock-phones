@@ -20,37 +20,50 @@ class AttributionType extends AbstractType
             ->add('employeId', EntityType::class, [
                 'class' => Employe::class,
                 'choice_label' => 'Nom',
+                'label' => 'Employé',
 
                 'attr' => [
                     
-                    'class' => 'form-select'
+                    'class' => 'form-select',
+                    'style' => 'margin-bottom: 20px;'
                 ],
                 // 'block_prefix' => '{{item.Title}}',
             ])
             ->add('ligneId', EntityType::class, [
                 'class' => Ligne::class,
                 'choice_label' => 'reference',
+                'label' => 'Ligne',
+
 
                 'attr' => [
                     
-                    'class' => 'form-select'
+                    'class' => 'form-select',
+                    'style' => 'margin-bottom: 20px;'
+
+
                 ],
                 // 'block_prefix' => '{{item.Title}}',
             ])
             ->add('terminalId', EntityType::class, [
                 'class' => Terminal::class,
                 'choice_label' => 'communiquant',
+                'label' => 'Terminal',
+
 
                 'attr' => [
                     
-                    'class' => 'form-select'
+                    'class' => 'form-select',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
                 // 'block_prefix' => '{{item.Title}}',
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-primary',
+                    'style' => 'background-color: #1b1e21; border-color: #1b1e21; margin-top: 20px; margin-bottom: 20px; width: 100%;'
+
                 ],
             ]);
     }

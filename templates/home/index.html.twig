@@ -25,23 +25,25 @@
 {% set counter = 0 %}
 
 <script>
-function format(gc_id, date, type, amount, note) {
-    return "<div class='col-xs-offset-1'><b>GC ID:</b> "+gc_id+"</div><div class='col-xs-offset-1'><b>Date:</b>55555555555</div><div class='col-xs-offset-1'><b>Type:</b> tttttttt</div><div class='col-xs-offset-1'><b>Amount:</b>zzzzzzzzzzzzzz</div<div class='col-xs-offset-1'><b>Note:</b>nnnnnnnnnnnnnnn</div>";
+	function format(gc_id, date, type, amount, note) {
+return "<div class='col-xs-offset-1'><b>GC ID:</b> " + gc_id + "</div><div class='col-xs-offset-1'><b>Date:</b>55555555555</div><div class='col-xs-offset-1'><b>Type:</b> tttttttt</div><div class='col-xs-offset-1'><b>Amount:</b>zzzzzzzzzzzzzz</div<div class='col-xs-offset-1'><b>Note:</b>nnnnnnnnnnnnnnn</div>";
 };
 
-	$(document).ready(function () {
-var table = $('#tablePhones').DataTable({
-//"dom": "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+$(document).ready(function () {
+var table = $('#tablePhones').DataTable({ // "dom": "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
 fixedColumns: true,
-//lengthChange: false,
-buttons: ['copy', 'excel', 'pdf', 'colvis', 'add']
+// lengthChange: false,
+buttons: [
+'copy',
+'excel',
+'colvis',
+]
 
 
 });
-table.buttons().container()
-        .appendTo( '#tablePhones_wrapper .col-md-6:eq(0)' );
+table.buttons().container().appendTo('#tablePhones_wrapper .col-md-6:eq(0)');
 
-	});
+});
 </script>
 
 
@@ -49,15 +51,14 @@ table.buttons().container()
 	<h2>Pas encore d'employe !</h2>
 {% else %}
 	{# <h2>Il y a
-			{{ employes|length }}
-			employés</h2>
-		<h3>Voici la liste</h3> #}
+								{{ employes|length }}
+								employés</h2>
+							<h3>Voici la liste</h3> #}
 	<div id="divTable">
-	
+
 		<table id="tablePhones" class="table table-striped display" cellspacing="0">
 			<thead>
 				<tr>
-					<th></th>
 					<th></th>
 					<th>Civilité</th>
 					<th>Nom</th>
@@ -68,96 +69,191 @@ table.buttons().container()
 					<th>IMEI Acheté</th>
 					<th>Mise en service</th>
 					<th>Reference</th>
-					
+
 					<th class="hidden">Fin engagement</th>
 					<th class="hidden">Facturation</th>
-					<th class="hidden">Portage</th> 
+					<th class="hidden">Portage</th>
 					<th class="hidden">CSIM</th>
-					<th class="hidden">NumeroPrive</th> 
+					<th class="hidden">NumeroPrive</th>
 					<th class="hidden">ChangementTerminal</th>
 					<th class="hidden">Modification forfait</th>
 					<th class="hidden">Ligne secondaire</th>
 					<th class="hidden">Ligne principale</th>
 					<th class="hidden">MIA</th>
 					<th class="hidden">Forfait</th>
-					<th class="hidden">Liste</th>				
+					<th class="hidden">Liste</th>
+					<th class="">Modifier</th>
+					<th class="">Supprimer</th>
+					<th>Voir plus</th>
+
 				</tr>
 			</thead>
 			<tbody>
-				
+
 				{% set counter = -1 %}
 				{% for item in attributions %}
-					<tr>
-						<td class='details-control'></td>
-						<td><input type="checkbox" class="form-check-input" name="" id=""></td>
-						<td>{{item.civilite}}</td>
-						<td>{{item.Nom}}</td>
-						<td>{{item.Prenom}}</td>
-						<td>{{item.Email}}</td>
-						<td>{{item.communiquant}}</td>
-						<td>{{item.imeiCommuniquant}}</td>
-						<td>{{item.imeiAchete}}</td>
-						<td>{{item.miseService}}</td>
-						<td>{{item.reference}}</td>
-						<td class="hidden">{{item.finEngagement}}</td>
-						<td class="hidden">{{item.facturation}}</td>
-						<td class="hidden">{{item.portage}}</td> 
-						<td class="hidden">{{item.csim}}</td>
-						<td class="hidden">{{item.numeroPrive}}</td>
-						<td class="hidden">{{item.changementTerminal}}</td> 
-						<td class="hidden">{{item.modificationForfait}}</td>
-						<td class="hidden">{{item.ligneSecondaire}}</td>
-						<td class="hidden">{{item.lignePrincipale}}</td>
-						<td class="hidden">{{item.masterIdAcces}}</td>
-						<td class="hidden">{{item.libelle}}</td>
-						<td class="hidden"></td>
-						
-					
-					</tr>
+					{% if item.isDeleted != 1 %}
+						<tr>
+							<td class='details-control'></td>
+							<td>{{item.civilite}}</td>
+							<td>{{item.Nom}}</td>
+							<td>{{item.Prenom}}</td>
+							<td>{{item.Email}}</td>
+							<td>{{item.communiquant}}</td>
+							<td>{{item.imeiCommuniquant}}</td>
+							<td>{{item.imeiAchete}}</td>
+							<td>{{item.miseService}}</td>
+							<td>{{item.reference}}</td>
+							<td class="hidden">{{item.finEngagement}}</td>
+							<td class="hidden">{{item.facturation}}</td>
+							<td class="hidden">{{item.portage}}</td>
+							<td class="hidden">{{item.csim}}</td>
+							<td class="hidden">{{item.numeroPrive}}</td>
+							<td class="hidden">{{item.changementTerminal}}</td>
+							<td class="hidden">{{item.modificationForfait}}</td>
+							<td class="hidden">{{item.ligneSecondaire}}</td>
+							<td class="hidden">{{item.lignePrincipale}}</td>
+							<td class="hidden">{{item.masterIdAcces}}</td>
+							<td class="hidden">{{item.libelle}}</td>
+							<td class="hidden"></td>
+							<td class="">
+								<a href={{path('app_edit', {id: item.id} )}}>
+									<button class="btnAction">Modifier</button>
+								</a>
+							</td>
+							<td class="">
+								<a href={{path('app_delete', {id: item.id} )}}>
+									<button class="btnAction">Supprimer</button>
+								</a>
+							</td>
+							<td>
+								<button type="button" class="btnAction" data-bs-toggle="modal" data-bs-target="#modal{{item.id}}">Voir</button>
+							</td>
+
+
+						</tr>
+						<div class="modal fade" id="modal{{item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Plus d'info sur la ligne
+											{{item.reference}}</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body" id="formLigne">
+										<div class="inline">
+											<div class="titre">Fin engagement :</div>
+											{{item.finEngagement}}
+											
+										</div>
+										</br>
+										<div class="line"></div>
+										<div class="inline">
+											<div class="titre">Facturation :</div>
+											{{item.facturation}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">Portage :</div>
+											{{item.portage}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">CSIM :</div>
+											{{item.csim}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">Numero prive :</div>
+											{{item.numeroPrive}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">Changement terminal :</div>
+											{{item.changementTerminal}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">Modification forfait :</div>
+											{{item.modificationForfait}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">Ligne secondaire :</div>
+											{{item.ligneSecondaire}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">Ligne principale :</div>
+											{{item.lignePrincipale}}
+										</div>
+										</br>
+										<div class="inline">
+											<div class="titre">Master ID acces :</div>
+											{{item.masterIdAcces}}
+										</div>
+										</br>
+
+										<div class="inline">
+											<div class="titre">Libelle :</div>
+											{{item.libelle}}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+
 					{% set counter = counter + 1 %}
 				{% endfor %}
-				
-				{% block javascripts %}
-							<script>
-								
-									$('#tablePhones tbody').on('click', 'td.details-control', function () {
-										var tr = $(this).closest('tr');
-										var table = $('#tablePhones').DataTable();
-										var row = table.row(tr);
-										if (row.child.isShown()) {
-											console.log("shown")
-											row.child.hide();
-											tr.removeClass('shown');
-										} else {
-											// Open this row
-											console.log("not shown")
-											row.child(format("{{attributions[counter].Nom}}")).show();
-											tr.addClass('shown');
 
-										}
-									});
-							
-							</script>
-						
-				{% endblock %}
+
 			</tbody>
 		</table>
+		{# FORM LIGNE #}
+		<!-- Button trigger modal -->
+		<button type="button" class="btnActionBas" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			Nouvelle ligne
+		</button>
+		{# FORM EMPLOYE #}
+		<!-- Button trigger modal -->
+		<button type="button" class="btnActionBas" data-bs-toggle="modal" data-bs-target="#exampleModalE">
+			Nouvel employe
+		</button>
+		{# FORM TERMINAL #}
+		<!-- Button trigger modal -->
+		<button type="button" class="btnActionBas" data-bs-toggle="modal" data-bs-target="#exampleModalT">
+			Nouveau terminal
+		</button>
+		{# FORM ATTRIBUTION #}
+		<!-- Button trigger modal -->
+		<button type="button" class="btnActionBas" data-bs-toggle="modal" data-bs-target="#exampleModalA">
+			Nouvelle attribution
+		</button>
+
+
 		<div class="containerAlerte">
 			<div>Terminaux disponibles :
 				{{terminauxRestants}}
 				/
 				{{totalTerminaux}}</div>
 			{% if terminauxRestants >= totalTerminaux / 4 %}
-				<div class="alerte alerteVerte"></div>
+				{# <div class="alerte alerteVerte"></div> #}
 				<div class="texteVert">Il reste suffisamment de terminaux disponibles.</div>
 			{% elseif terminauxRestants < totalTerminaux / 4 and terminauxRestants > totalTerminaux / 10 %}
-				<div class="alerte alerteJaune"></div>
+				{# <div class="alerte alerteJaune"></div> #}
 				<div class="texteJaune">Il ne reste plus beaucoup de terminaux disponibles.</div>
 			{% else %}
-				<div class="alerte alerteRouge"></div>
+				{# <div class="alerte alerteRouge"></div> #}
 				<div class="texteRouge">Un renouvellement du stock est nécessaire.</div>
 			{% endif %}
-			
 
 
 		</div>
@@ -165,27 +261,22 @@ table.buttons().container()
 
 {% endif %}
 
-{# FORM LIGNE #}
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Nouvelle ligne
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="formLigne">
-        {{form_start(form)}}
-		{{form_widget(form)}}
-		{{form_end(form)}}
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body" id="formLigne">
+				{{form_start(form)}}
+				{{form_widget(form)}}
+				{{form_end(form)}}
+			</div>
+		</div>
+	</div>
 </div>
 
 {# {% block javascripts %}
@@ -196,73 +287,58 @@ table.buttons().container()
 	</script>
 {% endblock %} #}
 
-{# FORM EMPLOYE #}
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalE">
-  Nouvel employe
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalE" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {{form_start(formEmploye)}}
-		{{form_widget(formEmploye)}}
-		{{form_end(formEmploye)}}
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{form_start(formEmploye)}}
+				{{form_widget(formEmploye)}}
+				{{form_end(formEmploye)}}
+			</div>
+		</div>
+	</div>
 </div>
 
-{# FORM TERMINAL #}
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalT">
-  Nouveau terminal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalT" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {{form_start(formTerminal)}}
-		{{form_widget(formTerminal)}}
-		{{form_end(formTerminal)}}
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{form_start(formTerminal)}}
+				{{form_widget(formTerminal)}}
+				{{form_end(formTerminal)}}
+			</div>
+		</div>
+	</div>
 </div>
 
-{# FORM ATTRIBUTION #}
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalA">
-  Nouvel attribution
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        {{form_start(formAttribution)}}
-		{{form_widget(formAttribution)}}
-		{{form_end(formAttribution)}}
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{form_start(formAttribution)}}
+				{{form_widget(formAttribution)}}
+				{{form_end(formAttribution)}}
+			</div>
+		</div>
+	</div>
 </div>
 
 

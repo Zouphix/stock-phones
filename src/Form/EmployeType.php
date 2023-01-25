@@ -22,31 +22,44 @@ class EmployeType extends AbstractType
                     'Mademoiselle' => 'Mademoiselle',
                 ],
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
                 ],
             ])
             ->add('Nom', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Nom',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('Prenom', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Prenom',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
+
                 ],
             ])
             ->add('Email', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Email',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'style' => 'margin-bottom: 20px;'
+
                 ],
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer',
                 'attr' => [
-                    'class' => 'btn btn-primary'
+                    'class' => 'btn btn-primary',
+                    'style' => 'background-color: #1b1e21; border-color: #1b1e21; margin-top: 20px; margin-bottom: 20px; width: 100%;'
+                    
+
+                    
+
                 ],
             ])
         ;
