@@ -1,4 +1,10 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.bootstrap5.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.bootstrap5.min.css">
@@ -22,8 +28,9 @@
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/responsive.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-{% set counter = 0 %}
-
+    <title>L06010117ignes</title>
+</head>
+<body>
 <script>
 	function format(gc_id, date, type, amount, note) {
 return "<div class='col-xs-offset-1'><b>GC ID:</b> " + gc_id + "</div><div class='col-xs-offset-1'><b>Date:</b>55555555555</div><div class='col-xs-offset-1'><b>Type:</b> tttttttt</div><div class='col-xs-offset-1'><b>Amount:</b>zzzzzzzzzzzzzz</div<div class='col-xs-offset-1'><b>Note:</b>nnnnnnnnnnnnnnn</div>";
@@ -45,90 +52,65 @@ table.buttons().container().appendTo('#tablePhones_wrapper .col-md-6:eq(0)');
 
 });
 </script>
-
-
-{% if employes is empty %}
-	<h2>Pas encore d'employe !</h2>
-{% else %}
-	{# <h2>Il y a
-								{{ employes|length }}
-								employés</h2>
-							<h3>Voici la liste</h3> #}
-	<div id="divTable">
+    <div id="divTable">
 
 		<table id="tablePhones" class="table table-striped display" cellspacing="0">
 			<thead>
 				<tr>
-					<th></th>
-					<th>Civilité</th>
-					<th>Nom</th>
-					<th>Prénom</th>
-					<th>Email</th>
-					<th>Terminal Communiquant</th>
-					<th>IMEI Communiquant</th>
-					<th>IMEI Acheté</th>
-					<th>Mise en service</th>
 					<th>Reference</th>
-
-					<th class="hidden">Fin engagement</th>
-					<th class="hidden">Facturation</th>
-					<th class="hidden">Portage</th>
-					<th class="hidden">CSIM</th>
-					<th class="hidden">NumeroPrive</th>
-					<th class="hidden">ChangementTerminal</th>
-					<th class="hidden">Modification forfait</th>
+                    <th>Mise en service</th>
+					<th>Fin engagement</th>
+					<th>Facturation</th>
+					<th>Portage</th>
+					<th>CSIM</th>
+					<th>NumeroPrive</th>
+					<th>ChangementTerminal</th>
+					<th>Modification forfait</th>
 					<th class="hidden">Ligne secondaire</th>
 					<th class="hidden">Ligne principale</th>
 					<th class="hidden">MIA</th>
 					<th class="hidden">Forfait</th>
 					<th class="hidden">Liste</th>
-					<th class="">Modifier</th>
-					<th class="">Supprimer</th>
-					<th>Voir plus</th>
-
+					<th>Modifier</th>
+					<th>Supprimer</th>
+                    <th>Voir plus</th>
 				</tr>
 			</thead>
 			<tbody>
 
-				{% set counter = -1 %}
-				{% for item in attributions %}
-					{% if item.isDeleted != 1 %}
+				{% for item in lignes %}
+                	{% if item.isDeleted != 1 %}
+
 						<tr>
-							<td class='details-control'></td>
-							<td>{{item.civilite}}</td>
-							<td>{{item.Nom}}</td>
-							<td>{{item.Prenom}}</td>
-							<td>{{item.Email}}</td>
-							<td>{{item.communiquant}}</td>
-							<td>{{item.imeiCommuniquant}}</td>
-							<td>{{item.imeiAchete}}</td>
-							<td>{{item.miseService}}</td>
+							
 							<td>{{item.reference}}</td>
-							<td class="hidden">{{item.finEngagement}}</td>
-							<td class="hidden">{{item.facturation}}</td>
-							<td class="hidden">{{item.portage}}</td>
-							<td class="hidden">{{item.csim}}</td>
-							<td class="hidden">{{item.numeroPrive}}</td>
-							<td class="hidden">{{item.changementTerminal}}</td>
-							<td class="hidden">{{item.modificationForfait}}</td>
+                            <td>{{item.miseService}}</td>
+							<td>{{item.finEngagement}}</td>
+							<td>{{item.facturation}}</td>
+							<td>{{item.portage}}</td>
+							<td>{{item.csim}}</td>
+							<td>{{item.numeroPrive}}</td>
+							<td>{{item.changementTerminal}}</td>
+							<td>{{item.modificationForfait}}</td>
 							<td class="hidden">{{item.ligneSecondaire}}</td>
 							<td class="hidden">{{item.lignePrincipale}}</td>
 							<td class="hidden">{{item.masterIdAcces}}</td>
-							<td class="hidden">{{item.libelle}}</td>
 							<td class="hidden"></td>
+                            <td class="hidden"></td>
 							<td class="">
-								<a href={{path('app_edit', {id: item.id} )}}>
+								<a href={{path('ligne_edit', {id: item.id} )}}>
 									<button class="btnAction">Modifier</button>
 								</a>
 							</td>
 							<td class="">
-								<a href={{path('app_delete', {id: item.id} )}}>
+								<a href={{path('ligne_delete', {id: item.id} )}}>
 									<button class="btnAction">Supprimer</button>
 								</a>
 							</td>
-							<td>
+                            <td>
 								<button type="button" class="btnAction" data-bs-toggle="modal" data-bs-target="#modal{{item.id}}">Voir</button>
-							</td>
+                            </td>
+							
 
 
 						</tr>
@@ -141,6 +123,12 @@ table.buttons().container().appendTo('#tablePhones_wrapper .col-md-6:eq(0)');
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body" id="formLigne">
+                                    <div class="inline">
+											<div class="titre">Mise en service :</div>
+											{{item.miseService}}
+											
+										</div>
+										</br>
 										<div class="inline">
 											<div class="titre">Fin engagement :</div>
 											{{item.finEngagement}}
@@ -203,80 +191,17 @@ table.buttons().container().appendTo('#tablePhones_wrapper .col-md-6:eq(0)');
 
 										<div class="inline">
 											<div class="titre">Libelle :</div>
-											{{item.libelle}}
+											
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					{% endif %}
-
-					{% set counter = counter + 1 %}
+                        {% endif %}
 				{% endfor %}
 
 
 			</tbody>
 		</table>
-		{# FORM LIGNE #}
-		<!-- Button trigger modal -->
-		<a href={{path('ligne_home')}}><button type="button" class="btnActionBas">Gestion des lignes</button></a>
-		{# FORM EMPLOYE #}
-		<!-- Button trigger modal -->
-		<a href={{path('employe_home')}}><button type="button" class="btnActionBas" >
-			Gestion des employés
-		</button></a>
-		{# FORM TERMINAL #}
-		<!-- Button trigger modal -->
-		<a href={{path('terminal_home')}}><button type="button" class="btnActionBas" >
-			Gestion des terminaux
-		</button></a>
-		{# FORM ATTRIBUTION #}
-		<!-- Button trigger modal -->
-		<button type="button" class="btnActionBas" data-bs-toggle="modal" data-bs-target="#exampleModalA">
-			Nouvelle attribution
-		</button>
-
-
-		<div class="containerAlerte">
-			<div>Terminaux disponibles :
-				{{terminauxRestants}}
-				/
-				{{totalTerminaux}}</div>
-			{% if terminauxRestants >= totalTerminaux / 4 %}
-				{# <div class="alerte alerteVerte"></div> #}
-				<div class="texteVert">Il reste suffisamment de terminaux disponibles.</div>
-			{% elseif terminauxRestants < totalTerminaux / 4 and terminauxRestants > totalTerminaux / 10 %}
-				{# <div class="alerte alerteJaune"></div> #}
-				<div class="texteJaune">Il ne reste plus beaucoup de terminaux disponibles.</div>
-			{% else %}
-				{# <div class="alerte alerteRouge"></div> #}
-				<div class="texteRouge">Un renouvellement du stock est nécessaire.</div>
-			{% endif %}
-
-
-		</div>
-	</div>
-
-{% endif %}
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Nouvelle attribution</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				{{form_start(formAttribution)}}
-				{{form_widget(formAttribution)}}
-				{{form_end(formAttribution)}}
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<script src={{asset('scripts/front.js')}}></script>
+</body>
+</html>
