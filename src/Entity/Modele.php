@@ -16,6 +16,9 @@ class Modele
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isDeleted = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Modele
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    public function isIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(?bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }
