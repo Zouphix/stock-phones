@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\LieuRepository;
+use App\Repository\ModeleImprimanteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LieuRepository::class)]
-class Lieu
+#[ORM\Entity(repositoryClass: ModeleImprimanteRepository::class)]
+class ModeleImprimante
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,15 +18,11 @@ class Lieu
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\OneToMany(mappedBy: 'lieuId', targetEntity: Moniteur::class)]
-    private Collection $moniteurs;
-
-    #[ORM\OneToMany(mappedBy: 'lieuId', targetEntity: Imprimante::class)]
+    #[ORM\OneToMany(mappedBy: 'modeleImprimanteId', targetEntity: Imprimante::class)]
     private Collection $imprimantes;
 
     public function __construct()
     {
-        $this->moniteurs = new ArrayCollection();
         $this->imprimantes = new ArrayCollection();
     }
 
@@ -48,36 +44,6 @@ class Lieu
     }
 
     /**
-     * @return Collection<int, Moniteur>
-     */
-    public function getMoniteurs(): Collection
-    {
-        return $this->moniteurs;
-    }
-
-    public function addMoniteur(Moniteur $moniteur): self
-    {
-        if (!$this->moniteurs->contains($moniteur)) {
-            $this->moniteurs->add($moniteur);
-            $moniteur->setLieuId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMoniteur(Moniteur $moniteur): self
-    {
-        if ($this->moniteurs->removeElement($moniteur)) {
-            // set the owning side to null (unless already changed)
-            if ($moniteur->getLieuId() === $this) {
-                $moniteur->setLieuId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Imprimante>
      */
     public function getImprimantes(): Collection
@@ -89,7 +55,7 @@ class Lieu
     {
         if (!$this->imprimantes->contains($imprimante)) {
             $this->imprimantes->add($imprimante);
-            $imprimante->setLieuId($this);
+            $imprimante->setModeleImprimanteId($this);
         }
 
         return $this;
@@ -99,8 +65,8 @@ class Lieu
     {
         if ($this->imprimantes->removeElement($imprimante)) {
             // set the owning side to null (unless already changed)
-            if ($imprimante->getLieuId() === $this) {
-                $imprimante->setLieuId(null);
+            if ($imprimante->getModeleImprimanteId() === $this) {
+                $imprimante->setModeleImprimanteId(null);
             }
         }
 
