@@ -21,7 +21,33 @@
 // addEvent();
 
 
-var add = document.querySelector('.col-md-6');
-add.classList.add('add');
 
 
+function addEvent(){
+    document.querySelector("#moon").addEventListener("click", () => {
+        console.log("click");
+        document.querySelector(".divTable").classList.toggle("dark-mode-div-table");
+        document.querySelector('body').classList.toggle("dark-mode-body");
+        document.querySelectorAll('th').forEach((element) => {
+            element.classList.toggle("dark-mode-th");
+        });
+        document.querySelectorAll('button').forEach((element) => {
+            element.classList.toggle("dark-mode-btn");
+        });
+
+        document.querySelectorAll('tr').forEach((element) => {
+            element.classList.toggle("dark-mode-tr");
+        });
+
+        document.querySelectorAll('.page-item.active .page-link').forEach((element) => {
+            element.classList.toggle("dark-mode-page-item");
+        });
+        document.querySelectorAll('.pagination>li>a').forEach((element) => {
+            element.classList.toggle("dark-mode-page-link");
+            element.classList.toggle("dark-mode-page-item");
+
+        });
+    });
+}
+
+addEvent();

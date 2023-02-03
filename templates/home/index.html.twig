@@ -54,7 +54,8 @@ table.buttons().container().appendTo('#tablePhones_wrapper .col-md-6:eq(0)');
 								{{ employes|length }}
 								employés</h2>
 							<h3>Voici la liste</h3> #}
-	<div id="divTable">
+<img id="moon" src="https://img.icons8.com/ios/50/null/bright-moon--v1.png"/>
+	<div class="divTable d">
 
 		<table id="tablePhones" class="table table-striped display" cellspacing="0">
 			<thead>
@@ -114,8 +115,9 @@ table.buttons().container().appendTo('#tablePhones_wrapper .col-md-6:eq(0)');
 							<td class="hidden">{{item.ligneSecondaire}}</td>
 							<td class="hidden">{{item.lignePrincipale}}</td>
 							<td class="hidden">{{item.masterIdAcces}}</td>
-							<td class="hidden">{{item.libelle}}</td>
-							<td class="hidden"></td>
+							<td class="hidden">{{item.forfaitlibelle}}</td>
+
+							<td class="hidden">{{item.listelibelle}}</td>
 							<td class="">
 								<a href={{path('app_edit', {id: item.id} )}}>
 									<button class="btnAction">Modifier</button>
@@ -200,10 +202,15 @@ table.buttons().container().appendTo('#tablePhones_wrapper .col-md-6:eq(0)');
 											{{item.masterIdAcces}}
 										</div>
 										</br>
+										<div class="inline">
+											<div class="titre">Forfait :</div>
+											{{item.forfaitlibelle}}
+										</div>
+									    </br>
 
 										<div class="inline">
-											<div class="titre">Libelle :</div>
-											{{item.libelle}}
+											<div class="titre">Liste :</div>
+											{{item.listelibelle}}
 										</div>
 									</div>
 								</div>

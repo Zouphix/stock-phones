@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home', methods: ['GET', 'POST'])]
+    #[Route('/mobile', name: 'app_home', methods: ['GET', 'POST'])]
     public function index(Request $request, ManagerRegistry $doctrine, FormFactoryInterface $formfactory ): Response
     {
         $employes = $doctrine->getRepository(Employe::class)->findAll();

@@ -4,15 +4,19 @@ body {
     width: 100%;
     background-color: rgb(250, 243, 234);
     padding: 2%;
+    transition: 0.5s;
+
     /* overflow-y: hidden; */
 
 }
 
-#divTable{
+.divTable{
     background-color: white;
     border-radius: 20px;
     padding: 2%;
     overflow-x: hidden;
+    transition: 0.5s;
+
 
 }
 
@@ -30,6 +34,8 @@ button {
     font-size: 1.02em;
     font-weight: 600;
     cursor: pointer;
+    transition: 0.5s;
+
 
     
 }
@@ -196,7 +202,7 @@ button:hover{
 
 .titre{
     font-size: 1em;
-    color: rgb(255, 132, 0);
+    color: black;
     margin-right: 20px;
     width: 100%;
     /* text-decoration: underline; */
@@ -227,3 +233,139 @@ a{
 body::-webkit-scrollbar{
     display: none;
   }
+
+.page-link {
+    color: rgb(255, 132, 0);
+}
+
+.page-item.active .page-link{
+    background-color: rgb(255, 132, 0);
+    border-color: rgb(255, 132, 0);
+}
+
+
+.page-link:hover {
+    color: rgb(255, 132, 0);
+}
+
+.dark-mode-div-table{
+    background-color: rgb(34, 34, 34);
+    color: rgb(229, 229, 229);
+    border-radius: 20px;
+    padding: 2%;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.dark-mode-body{
+    background-color: rgb(48, 48, 48);
+    overflow-x: scroll;
+    width: 100%;
+    padding: 2%;
+    transition: 0.5s;
+
+
+}
+
+
+
+.dark-mode-th{
+    color: rgb(229, 229, 229);
+    transition: 0.5s;
+}
+
+.dark-mode-btn{
+    background-color: rgb(66, 66, 66);
+    color: rgb(229, 229, 229);
+    border-radius: 10px;
+    border: solid 1px rgb(229, 229, 229);
+    padding: 1%;
+    margin: 0.5%;
+    font-size: 1.02em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.dark-mode-btn:hover{
+    background-color: rgb(255, 132, 0);
+    color: white;
+    border-radius: 10px;
+    border: solid 1px rgb(255, 132, 0);
+    padding: 1%;
+    margin: 0.5%;
+    font-size: 1.02em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.dark-mode-tr{
+    color: rgb(229, 229, 229);
+
+    transition: 0.5s;
+}
+
+.dark-mode-page-item{
+    background-color: rgb(59, 130, 246);
+    transition: 0.5s;
+}
+
+.dark-mode-page-item>a{
+    background-color: rgb(59, 130, 246);
+    border-color: rgb(59, 130, 246);
+    transition: 0.5s;
+}
+
+
+
+.dark-mode-page-link{
+    color: rgb(229, 229, 229);
+    transition: 0.5s;
+}
+
+.navbar{
+    background-color: white;
+    border-radius: 20px;
+    padding: 2%;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.maindiv{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2%;
+    width: 100%;
+}
+
+.categorie{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2%;
+    width: 20%;
+    background-color: white;
+    padding: 2%;
+    border-radius: 20px;
+    border: 1px ;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.categorie:hover{
+    scale: 1.1;
+    border-radius: 20px;
+    border: 1px ;
+    text-align: center;
+    transition: 0.5s;
+}
+
+h5{
+    margin-bottom: 30px;
+}
