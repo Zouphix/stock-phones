@@ -58,6 +58,11 @@ class TypeController extends AbstractController
 
             return $this->redirectToRoute('type_home');
         }
+
+        return $this->render('type/edit.html.twig', [
+            'controller_name' => 'TypeController',
+            'form' => $form->createView()
+        ]);
     }
 
     #[Route('/type/delete/{id}', name: 'type_delete')]
