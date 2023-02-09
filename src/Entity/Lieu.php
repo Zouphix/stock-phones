@@ -24,10 +24,14 @@ class Lieu
     #[ORM\OneToMany(mappedBy: 'lieuId', targetEntity: Imprimante::class)]
     private Collection $imprimantes;
 
+    #[ORM\OneToMany(mappedBy: 'lieuId', targetEntity: Ordinateur::class)]
+    private Collection $ordinateurs;
+
     public function __construct()
     {
         $this->moniteurs = new ArrayCollection();
         $this->imprimantes = new ArrayCollection();
+        $this->ordinateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,6 +105,36 @@ class Lieu
             // set the owning side to null (unless already changed)
             if ($imprimante->getLieuId() === $this) {
                 $imprimante->setLieuId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ordinateur>
+     */
+    public function getOrdinateurs(): Collection
+    {
+        return $this->ordinateurs;
+    }
+
+    public function addOrdinateur(Ordinateur $ordinateur): self
+    {
+        if (!$this->ordinateurs->contains($ordinateur)) {
+            $this->ordinateurs->add($ordinateur);
+            $ordinateur->setLieuId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdinateur(Ordinateur $ordinateur): self
+    {
+        if ($this->ordinateurs->removeElement($ordinateur)) {
+            // set the owning side to null (unless already changed)
+            if ($ordinateur->getLieuId() === $this) {
+                $ordinateur->setLieuId(null);
             }
         }
 

@@ -33,9 +33,13 @@ class Employe
     #[ORM\OneToMany(mappedBy: 'employeId', targetEntity: Attribution::class)]
     private Collection $attributions;
 
+    #[ORM\OneToMany(mappedBy: 'employeId', targetEntity: Ordinateur::class)]
+    private Collection $ordinateurs;
+
     public function __construct()
     {
         $this->attributions = new ArrayCollection();
+        $this->ordinateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +131,36 @@ class Employe
             // set the owning side to null (unless already changed)
             if ($attribution->getEmployeId() === $this) {
                 $attribution->setEmployeId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ordinateur>
+     */
+    public function getOrdinateurs(): Collection
+    {
+        return $this->ordinateurs;
+    }
+
+    public function addOrdinateur(Ordinateur $ordinateur): self
+    {
+        if (!$this->ordinateurs->contains($ordinateur)) {
+            $this->ordinateurs->add($ordinateur);
+            $ordinateur->setEmployeId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdinateur(Ordinateur $ordinateur): self
+    {
+        if ($this->ordinateurs->removeElement($ordinateur)) {
+            // set the owning side to null (unless already changed)
+            if ($ordinateur->getEmployeId() === $this) {
+                $ordinateur->setEmployeId(null);
             }
         }
 
