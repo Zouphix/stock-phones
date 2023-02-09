@@ -27,6 +27,9 @@ class Lieu
     #[ORM\OneToMany(mappedBy: 'lieuId', targetEntity: Ordinateur::class)]
     private Collection $ordinateurs;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $isDeleted = null;
+
     public function __construct()
     {
         $this->moniteurs = new ArrayCollection();
@@ -137,6 +140,18 @@ class Lieu
                 $ordinateur->setLieuId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(?bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }
